@@ -1,6 +1,7 @@
 <script>
   import axios from 'axios';
   import { createEventDispatcher } from 'svelte';
+  import Swal from 'sweetalert2';  // Import SweetAlert2
 
   export let provincias = [];
   export let fetchProvincias;
@@ -11,17 +12,27 @@
   const dispatch = createEventDispatcher();
 
   const deleteProvince = async (id) => {
-    // Ask the user for confirmation before proceeding with the deletion
-    const isConfirmed = window.confirm('Are you sure you want to delete this province?');
+    // SweetAlert2 confirmation dialog
+    const { isConfirmed } = await Swal.fire({
+      title: 'Are you sure?',
+      text: 'This action cannot be undone!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel',
+      reverseButtons: true
+    });
+
     if (!isConfirmed) {
       return; // Stop the deletion process if the user cancels
     }
 
     try {
       await axios.delete(`https://api.bisno.pro/api/provincias/${id}`);
+      Swal.fire('Deleted!', 'The province has been deleted.', 'success');
       fetchProvincias(); // Re-fetch provinces after deletion
     } catch (error) {
-      alert('Error deleting province');
+      Swal.fire('Error!', 'There was an error deleting the province.', 'error');
     }
   };
 
