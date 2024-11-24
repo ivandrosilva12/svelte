@@ -1,6 +1,7 @@
 <script>
   import { createEventDispatcher } from 'svelte';
   import axios from 'axios';
+ import Swal from 'sweetalert2';  // Import SweetAlert2
 
   const dispatch = createEventDispatcher();
 
@@ -15,6 +16,13 @@
     } catch (error) {
       alert('Error creating province');
     }
+    Swal.fire({
+        title: 'Created!',
+        text: 'The province has been created.',
+        icon: 'success',
+        timer: 1000,  // Dialog will automatically close after 1 second
+        showConfirmButton: false  // Hide the confirm button
+      });
   };
 </script>
 

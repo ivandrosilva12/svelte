@@ -29,7 +29,16 @@
 
     try {
       await axios.delete(`https://api.bisno.pro/api/provincias/${id}`);
-      Swal.fire('Deleted!', 'The province has been deleted.', 'success');
+      
+      // SweetAlert success dialog with 1-second timeout
+      Swal.fire({
+        title: 'Deleted!',
+        text: 'The province has been deleted.',
+        icon: 'success',
+        timer: 1000,  // Dialog will automatically close after 1 second
+        showConfirmButton: false  // Hide the confirm button
+      });
+
       fetchProvincias(); // Re-fetch provinces after deletion
     } catch (error) {
       Swal.fire('Error!', 'There was an error deleting the province.', 'error');
@@ -48,34 +57,35 @@
 </script>
 
 <ul>
-{#each provincias as provincia}
-  <li>
-    {provincia.nome} 
-    <button on:click={() => deleteProvince(provincia.id)}>Delete</button>
-  </li>
-{/each}
+  {#each provincias as provincia}
+    <li>
+      {provincia.nome} 
+      <button on:click={() => deleteProvince(provincia.id)}>Delete</button>
+    </li>
+  {/each}
 </ul>
 
 <!-- Pagination controls -->
 <div>
-<button on:click={() => changePage(page - 1)} disabled={page <= 1}>Previous</button>
-<span>Page {page} of {Math.ceil(totalCount / limit)}</span>
-<button on:click={() => changePage(page + 1)} disabled={page >= Math.ceil(totalCount / limit)}>Next</button>
+  <button on:click={() => changePage(page - 1)} disabled={page <= 1}>Previous</button>
+  <span>Page {page} of {Math.ceil(totalCount / limit)}</span>
+  <button on:click={() => changePage(page + 1)} disabled={page >= Math.ceil(totalCount / limit)}>Next</button>
 
-<!-- Limit controls -->
-<select on:change={(e) => changeLimit(parseInt(e.target.value))} bind:value={limit}>
-  <option value="10">10 per page</option>
-  <option value="20">20 per page</option>
-  <option value="50">50 per page</option>
-</select>
+  <!-- Limit controls -->
+  <select on:change={(e) => changeLimit(parseInt(e.target.value))} bind:value={limit}>
+    <option value="5">5 per page</option>
+    <option value="10">10 per page</option>
+    <option value="20">20 per page</option>
+    <option value="50">50 per page</option>
+  </select>
 </div>
 
 <style>
-button {
-  margin: 5px;
-}
+  button {
+    margin: 5px;
+  }
 
-select {
-  margin-left: 10px;
-}
+  select {
+    margin-left: 10px;
+  }
 </style>
