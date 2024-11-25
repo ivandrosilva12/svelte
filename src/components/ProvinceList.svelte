@@ -1,7 +1,7 @@
 <script>
-  import axios from 'axios';
-  import { createEventDispatcher } from 'svelte';
-  import Swal from 'sweetalert2';  // Import SweetAlert2
+  import { deleteProvincia } from "../api";
+  import { createEventDispatcher } from "svelte";
+  import Swal from "sweetalert2"; // Import SweetAlert2
 
   export let provincias = [];
   export let fetchProvincias;
@@ -14,13 +14,13 @@
   const deleteProvince = async (id) => {
     // SweetAlert2 confirmation dialog
     const { isConfirmed } = await Swal.fire({
-      title: 'Are you sure?',
-      text: 'This action cannot be undone!',
-      icon: 'warning',
+      title: "Are you sure?",
+      text: "This action cannot be undone!",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'Cancel',
-      reverseButtons: true
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
     });
 
     if (!isConfirmed) {
@@ -28,38 +28,38 @@
     }
 
     try {
-      await axios.delete(`https://api.bisno.pro/api/provincias/${id}`);
-      
+      await deleteProvincia(id);
+
       // SweetAlert success dialog with 1-second timeout
       Swal.fire({
-        title: 'Deleted!',
-        text: 'The province has been deleted.',
-        icon: 'success',
-        timer: 1000,  // Dialog will automatically close after 1 second
-        showConfirmButton: false  // Hide the confirm button
+        title: "Deleted!",
+        text: "The province has been deleted.",
+        icon: "success",
+        timer: 1000, // Dialog will automatically close after 1 second
+        showConfirmButton: false, // Hide the confirm button
       });
 
       fetchProvincias(); // Re-fetch provinces after deletion
     } catch (error) {
-      Swal.fire('Error!', 'There was an error deleting the province.', 'error');
+      Swal.fire("Error!", "There was an error deleting the province.", "error");
     }
   };
 
   // Dispatch an event to change the page
   const changePage = (newPage) => {
-    dispatch('changePage', newPage);
+    dispatch("changePage", newPage);
   };
 
   // Dispatch an event to change the limit
   const changeLimit = (newLimit) => {
-    dispatch('changeLimit', newLimit);
+    dispatch("changeLimit", newLimit);
   };
 </script>
 
 <ul>
   {#each provincias as provincia}
     <li>
-      {provincia.nome} 
+      {provincia.nome}
       <button on:click={() => deleteProvince(provincia.id)}>Delete</button>
     </li>
   {/each}
@@ -67,12 +67,20 @@
 
 <!-- Pagination controls -->
 <div>
-  <button on:click={() => changePage(page - 1)} disabled={page <= 1}>Previous</button>
+  <button on:click={() => changePage(page - 1)} disabled={page <= 1}
+    >Previous</button
+  >
   <span>Page {page} of {Math.ceil(totalCount / limit)}</span>
-  <button on:click={() => changePage(page + 1)} disabled={page >= Math.ceil(totalCount / limit)}>Next</button>
+  <button
+    on:click={() => changePage(page + 1)}
+    disabled={page >= Math.ceil(totalCount / limit)}>Next</button
+  >
 
   <!-- Limit controls -->
-  <select on:change={(e) => changeLimit(parseInt(e.target.value))} bind:value={limit}>
+  <select
+    on:change={(e) => changeLimit(parseInt(e.target.value))}
+    bind:value={limit}
+  >
     <option value="5">5 per page</option>
     <option value="10">10 per page</option>
     <option value="20">20 per page</option>
