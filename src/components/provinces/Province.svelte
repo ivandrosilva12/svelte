@@ -43,8 +43,6 @@
 </script>
 
 <div>
-  <h1>Provinces</h1>
-
   {#if errorMessage}
     <p>{errorMessage}</p>
   {/if}

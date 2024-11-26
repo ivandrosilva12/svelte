@@ -56,44 +56,96 @@
   };
 </script>
 
-<ul>
-  {#each provincias as provincia}
-    <li>
-      {provincia.nome}
-      <button on:click={() => deleteProvince(provincia.id)}>Delete</button>
-    </li>
-  {/each}
-</ul>
+<!-- Data Table -->
+<div class="table-container">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {#each provincias as provincia}
+        <tr>
+          <td>{provincia.nome}</td>
+          <td>
+            <button on:click={() => deleteProvince(provincia.id)}>Delete</button>
+          </td>
+        </tr>
+      {/each}
+    </tbody>
+  </table>
 
-<!-- Pagination controls -->
-<div>
-  <button on:click={() => changePage(page - 1)} disabled={page <= 1}
-    >Previous</button
-  >
-  <span>Page {page} of {Math.ceil(totalCount / limit)}</span>
-  <button
-    on:click={() => changePage(page + 1)}
-    disabled={page >= Math.ceil(totalCount / limit)}>Next</button
-  >
+  <!-- Pagination controls -->
+  <div class="pagination-controls">
+    <button on:click={() => changePage(page - 1)} disabled={page <= 1}>Previous</button>
+    <span>Page {page} of {Math.ceil(totalCount / limit)}</span>
+    <button on:click={() => changePage(page + 1)} disabled={page >= Math.ceil(totalCount / limit)}>Next</button>
 
-  <!-- Limit controls -->
-  <select
-    on:change={(e) => changeLimit(parseInt(e.target.value))}
-    bind:value={limit}
-  >
-    <option value="5">5 per page</option>
-    <option value="10">10 per page</option>
-    <option value="20">20 per page</option>
-    <option value="50">50 per page</option>
-  </select>
+    <!-- Limit controls -->
+    <select on:change={(e) => changeLimit(parseInt(e.target.value))} bind:value={limit}>
+      <option value="5">5 per page</option>
+      <option value="10">10 per page</option>
+      <option value="20">20 per page</option>
+      <option value="50">50 per page</option>
+    </select>
+  </div>
 </div>
 
 <style>
+  /* Centering the table and pagination */
+  .table-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  table {
+    width: 50%; /* Resize the table to be half of the page */
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #f4f4f4;
+  }
+
   button {
-    margin: 5px;
+    padding: 5px 10px;
+    background-color: #ff5555;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #ff3333;
   }
 
   select {
+    margin-left: 10px;
+  }
+
+  .pagination-controls {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .pagination-controls button {
+    margin: 0 5px;
+  }
+
+  .pagination-controls select {
     margin-left: 10px;
   }
 </style>

@@ -27,8 +27,20 @@
   };
 </script>
 
-<div>
+<div class="create-container">
   <h2>Create Province</h2>
   <input type="text" bind:value={nome} placeholder="Province Name" />
   <button on:click={createProvince}>Create</button>
 </div>
+
+<style>
+  /* Centering the table and pagination */
+  .create-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+</style>
