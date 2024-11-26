@@ -1,9 +1,9 @@
 <script>
   import { Router, Route, Link } from "svelte-routing";
-  import Province from "./components/provinces/Province.svelte";
   import Home from "./components/Home.svelte";
   import About from "./components/About.svelte";
   import Contact from "./components/Contact.svelte";
+  import RealState from "./components/RealState.svelte";
 </script>
 
 <Router>
@@ -13,7 +13,7 @@
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/provincias">Provincias</Link></li>
+        <li><Link to="/realstate">Real State</Link></li>
       </ul>
     </nav>
   </div>
@@ -22,7 +22,7 @@
     <Route path="/" component={Home} />
     <Route path="/about" component={About} />
     <Route path="/contact" component={Contact} />
-    <Route path="/provincias" component={Province} />
+    <Route path="/realstate" component={RealState} />
   </div>
 </Router>
 
