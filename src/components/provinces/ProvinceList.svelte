@@ -1,5 +1,5 @@
 <script>
-  import { deleteProvincia } from "../../api";
+  import { deleteProvincia } from "../api";
   import { createEventDispatcher } from "svelte";
   import Swal from "sweetalert2"; // Import SweetAlert2
 
