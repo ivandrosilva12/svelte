@@ -1,10 +1,10 @@
 <script>
   import { Router, Route, Link } from "svelte-routing";
   import Province from "./components/provinces/Province.svelte";
-  import Municipio from "./components/municipios/Municipio.svelte"
   import Home from "./components/Home.svelte";
   import About from "./components/About.svelte";
   import Contact from "./components/Contact.svelte";
+  import Municipio from "./components/municipios/Municipio.svelte";
 </script>
 
 <Router>
