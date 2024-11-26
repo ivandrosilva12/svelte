@@ -11,7 +11,7 @@
   const createProvince = async () => {
     try {
       const provinceData = { nome };
-      await createProvince(provinceData);
+      await createProvincia(provinceData);
       dispatch("fetchProvincias");
       nome = "";
     } catch (error) {
