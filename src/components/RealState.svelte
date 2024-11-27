@@ -37,6 +37,42 @@
         type: "Commercial",
         imageUrl: "https://via.placeholder.com/300x200?text=Commercial+1",
       },
+      {
+        id: 5,
+        name: "Modern 3 Bedroom House",
+        price: "$350,000",
+        description: "A beautiful 3-bedroom house with a large garden, ideal for families.",
+        location: "Miami, FL",
+        type: "House",
+        imageUrl: "https://via.placeholder.com/300x200?text=House+1",
+      },
+      {
+        id: 6,
+        name: "Luxury Apartment",
+        price: "$1,200,000",
+        description: "A luxurious apartment with ocean views and high-end finishes.",
+        location: "Miami Beach, FL",
+        type: "Apartment",
+        imageUrl: "https://via.placeholder.com/300x200?text=Apartment+1",
+      },
+      {
+        id: 7,
+        name: "Cozy Studio",
+        price: "$150,000",
+        description: "A cozy studio perfect for singles or as a vacation home.",
+        location: "Orlando, FL",
+        type: "Studio",
+        imageUrl: "https://via.placeholder.com/300x200?text=Studio+1",
+      },
+      {
+        id: 8,
+        name: "Spacious Commercial Space",
+        price: "$500,000",
+        description: "A large commercial property located in a prime business district.",
+        location: "Downtown, Miami, FL",
+        type: "Commercial",
+        imageUrl: "https://via.placeholder.com/300x200?text=Commercial+1",
+      },
     ];
   
     let selectedProperty = null; // Track selected property for detailed view
@@ -55,7 +91,14 @@
     const propertyTypes = ["All", "House", "Apartment", "Studio", "Commercial"];
   </script>
   
-  <style>  
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+  
     header {
       background-color: #2c3e50;
       color: white;
