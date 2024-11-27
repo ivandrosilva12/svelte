@@ -4,6 +4,7 @@
   import About from "./components/About.svelte";
   import Contact from "./components/Contact.svelte";
   import RealState from "./components/RealState.svelte";
+  import Provincia from "./components/provincias/Provincia.svelte";
 </script>
 
 <Router>
@@ -14,6 +15,7 @@
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
         <li><Link to="/realstate">Real State</Link></li>
+        <li><Link to="/provincias">Provincias</Link></li>
       </ul>
     </nav>
   </div>
@@ -23,6 +25,7 @@
     <Route path="/about" component={About} />
     <Route path="/contact" component={Contact} />
     <Route path="/realstate" component={RealState} />
+    <Route path="/provincias" component={Provincia} />
   </div>
 </Router>
 
